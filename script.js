@@ -44,7 +44,7 @@ function validateF(trigger) {
             // styling in case of error
             messageBox.classList.add("text-danger"); 
             trigger.target.classList.add('border-red')
-            messageBox.textContent="this feild cant be empty";
+            messageBox.textContent=" This feild cant be empty";
     
             //check all the values to 
             checks[id]=false;
@@ -118,7 +118,7 @@ function ageVerification(t, v, id) {
     if (v < 18 || v > 150 || v == "") {
         messageBox.classList.add("text-danger");
         if (v == "") {
-            messageBox.textContent = "this feild cant be empty";
+            messageBox.textContent = " This feild cant be empty";
         } else {
             messageBox.textContent = "Age must be between 18 and 150 ";
         }
@@ -157,13 +157,14 @@ function emailVerification(t, v, id) {
     let messageBox = formContainer.querySelector("#message");
     let emails = v.split(',');
     for (let i = 0; i < emails.length; i++) {
+
         answer = validateEmail(emails[i]);
         if (!answer || v == "") {
             messageBox.classList.add("text-danger");
             if (v == "") {
-                messageBox.textContent = "this feild cant be empty";
+                messageBox.textContent = " This feild cant be empty";
             } else {
-                messageBox.textContent = "This is not the valid email emails should be comma seprated";
+                messageBox.textContent = " This is not the valid email emails should be comma seprated";
             }
             checks[id] = false;
             break;
