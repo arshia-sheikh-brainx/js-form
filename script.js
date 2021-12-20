@@ -166,6 +166,7 @@ function emailVerification(t, v, id) {
                 messageBox.textContent = "This is not the valid email emails should be comma seprated";
             }
             checks[id] = false;
+            break;
         }
         else {
             messageBox.classList.remove("text-danger");
