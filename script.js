@@ -25,8 +25,6 @@ console.log(checks);
 //validation function
 function validateF(trigger) {
 
-    console.log(checks);
-
     let value = trigger.target.value; //value of input feild
     let id = trigger.target.id; //id of input feild
 
@@ -35,31 +33,7 @@ function validateF(trigger) {
     let lname = document.getElementById('lname');
     let fname = document.getElementById('fname');
     let age = document.getElementById('age');
-    /*
-        //check if any of the required feild is empty
-        if((id=="fname" || id=="lname" || id=="age" || id=="email") && value=="" ){
-            let formContainer=trigger.target.parentNode;  //form container
-            let messageBox= formContainer.querySelector("#message");  //message div
-    
-            // styling in case of error
-            messageBox.classList.add("text-danger"); 
-            trigger.target.classList.add('border-red')
-            messageBox.textContent=" This feild cant be empty";
-    
-            //check all the values to 
-            checks[id]=false;
-        }
-         
-        //check if any of the required feild is not empty
-        if((id=="fname" || id=="lname" || id=="age" || id=="email") && value!="" ){
-            let formContainer=trigger.target.parentNode;
-            let messageBox= formContainer.querySelector("#message");
-            messageBox.classList.remove("text-danger");
-            trigger.target.classList.remove('border-red')
-            messageBox.textContent="";
-            checks[id]=true;
-        }
-        */
+  
     if (id == "fname") {
         nameVerification(trigger, value, id);
 
