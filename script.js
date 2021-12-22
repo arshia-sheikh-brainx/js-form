@@ -20,7 +20,6 @@ var checks = {
     password: true,
     confirmPassword: true
 }
-console.log(checks);
 
 //validation function
 function validateF(trigger) {
