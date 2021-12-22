@@ -1,12 +1,11 @@
 //select the form
-let vForm = document.querySelector("#vform");
+const vForm = document.querySelector("#validationForm");
 
 //select the form inputs
-let inputs = document.querySelectorAll(".input");
+const inputs = document.querySelectorAll(".input");
 
 // add event listener on each input
 inputs.forEach(element => {
-    element.addEventListener("input", (e) => { validateF(e); });
     element.addEventListener("keyup", (e) => { validateF(e); });
 });
 
@@ -58,21 +57,21 @@ function validateF(trigger) {
         //do nothing
     }
     //check every feild
-    document.getElementById("btn").disabled = true;
+    document.getElementById("validationFormBtn").disabled = true;
     if (Object.values(checks).every(item => item === true)) {
         if (age.value != "" && lname.value != "" && fname.value != "" && email.value != "") {
-            document.getElementById("btn").disabled = false;
+            document.getElementById("validationFormBtn").disabled = false;
         }
 
     }
 
 }
 //checks both first and last name feilds 
-function nameVerification(t, v, id) {
+function nameVerification(trigger, value, id) {
 
-    let formContainer = t.target.parentNode;
-    let messageBox = formContainer.querySelector("#message");
-    if (v.length <= 0 || v == "") {
+    let formContainer = trigger.target.parentNode;
+    let messageBox = formContainer.querySelector(".message");
+    if (value.length <= 0 || value == "") {
         messageBox.classList.add("text-danger");
         messageBox.textContent = "Please enter the text";
         checks[id] = false;
@@ -84,13 +83,13 @@ function nameVerification(t, v, id) {
 
 }
 //checks age 
-function ageVerification(t, v, id) {
+function ageVerification(trigger, value, id) {
 
-    let formContainer = t.target.parentNode;
-    let messageBox = formContainer.querySelector("#message");
-    if (v < 18 || v > 150 || v == "") {
+    let formContainer = trigger.target.parentNode;
+    let messageBox = formContainer.querySelector(".message");
+    if (value < 18 || value > 150 || value == "") {
         messageBox.classList.add("text-danger");
-        if (v == "") {
+        if (value == "") {
             messageBox.textContent = " This feild cant be empty";
         } else {
             messageBox.textContent = "Age must be between 18 and 150 ";
@@ -104,10 +103,10 @@ function ageVerification(t, v, id) {
     }
 }
 // checks phone no
-function phoneVerification(t, v, id) {
-    let formContainer = t.target.parentNode;
-    let messageBox = formContainer.querySelector("#message");
-    if (v.length !== 11 && v.length > 0) {
+function phoneVerification(trigger, value, id) {
+    let formContainer = trigger.target.parentNode;
+    let messageBox = formContainer.querySelector(".message");
+    if (value.length !== 11 && value.length > 0) {
         messageBox.classList.add("text-danger");
         messageBox.textContent = "Phone Number must be 11 digit Long";
         checks[id] = false;
@@ -125,16 +124,16 @@ function validateEmail(email) {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
 }
-function emailVerification(t, v, id) {
-    let formContainer = t.target.parentNode;
-    let messageBox = formContainer.querySelector("#message");
-    let emails = v.split(',');
+function emailVerification(trigger, value, id) {
+    let formContainer = trigger.target.parentNode;
+    let messageBox = formContainer.querySelector(".message");
+    let emails = value.split(',');
     for (let i = 0; i < emails.length; i++) {
 
         answer = validateEmail(emails[i]);
-        if (!answer || v == "") {
+        if (!answer || value == "") {
             messageBox.classList.add("text-danger");
-            if (v == "") {
+            if (value == "") {
                 messageBox.textContent = " This feild cant be empty";
             } else {
                 messageBox.textContent = " This is not the valid email emails should be comma seprated";
@@ -157,14 +156,14 @@ function validatePassword(p) {
 }
 
 //check password
-function passwordVerification(t, v, id) {
-    let formContainer = t.target.parentNode;
-    let messageBox = formContainer.querySelector("#message");
+function passwordVerification(trigger, value, id) {
+    let formContainer = trigger.target.parentNode;
+    let messageBox = formContainer.querySelector(".message");
     if (id == "password") {
-        pass1 = v;
+        pass1 = value;
     }
 
-    if (!validatePassword(v) || (v.length > 0 && v.length < 8)) {
+    if (!validatePassword(value) || (value.length > 0 && value.length < 8)) {
         messageBox.classList.add("text-danger");
         messageBox.textContent = "Password should be minimum 8 character long and should contain 1 Uppercase 1 Lowercase and 1 Numeric value";
         checks[id] = false;
@@ -180,11 +179,11 @@ function passwordVerification(t, v, id) {
 }
 
 //checks confirm password
-function confirmPasswordVerification(t, v, id) {
-    passwordVerification(t, v, id);
-    let formContainer = t.target.parentNode;
-    let messageBox = formContainer.querySelector("#message");
-    if (pass1 != v) {
+function confirmPasswordVerification(trigger, value, id) {
+    passwordVerification(trigger, value, id);
+    let formContainer = trigger.target.parentNode;
+    let messageBox = formContainer.querySelector(".message");
+    if (pass1 != value) {
         messageBox.classList.add("text-danger");
         messageBox.textContent = "confirm password doesn't match";
         checks[id] = false;
